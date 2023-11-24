@@ -1,0 +1,149 @@
+.header {
+  padding: 25px 0;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__link {
+    font-weight: 700;
+    font-size: 18px;
+    transition: color 0.4s ease-in-out;
+
+    &--active {
+      color: $second;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px dashed $second;
+      outline-offset: 4px;
+    }
+
+    &:active {
+      color: $second;
+    }
+  }
+}
+
+@media (any-hover: hover) {
+  .nav__link:hover {
+    color: $second;
+  }
+}
+
+.btn {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 3px;
+  color: #000;
+  background: $light-text;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80%;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: $bg;
+    visibility: hidden;
+    transition:
+      transform 0.4s ease-in-out,
+      visibility 0.4s ease-in-out;
+    transform: translateX(-100%);
+
+    &__list {
+      flex-direction: column;
+      height: 100%;
+      padding: 50px 0;
+    }
+
+    &--active {
+      transform: none;
+      visibility: visible;
+    }
+  }
+
+  .burger {
+    position: relative;
+    display: block;
+    width: 34px;
+    height: 24px;
+    border: none;
+    // background-color: blueviolet;
+
+    &__line {
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $main;
+      transition:
+        transform 0.4s ease-in-out,
+        top 0.4s ease-in-out;
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:last-child {
+        top: calc(100% - 2px);
+      }
+    }
+
+    &--active &__line:first-child {
+      top: 50%;
+      transform: rotate(45deg);
+    }
+
+    &--active &__line:nth-child(2) {
+      transform: scale(0);
+    }
+
+    &--active &__line:last-child {
+      top: 50%;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .header {
+    &__container {
+      justify-content: initial;
+    }
+
+    &__btn {
+      margin-left: auto;
+      margin-right: 20px;
+    }
+  }
+}
